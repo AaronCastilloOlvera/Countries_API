@@ -31,25 +31,19 @@ namespace Countrys_API.Controllers
             return Ok();
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Country country)
+        {
+            countryService.Update(id, country);
+            return Ok();
+        }
+
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             countryService.Delete(id);
             return Ok();
         }
-
-
-
-        // To Create the DB
-        [HttpGet]
-        [Route("createdb")]
-        public IActionResult CreateDB()
-        {
-            countriesContext.Database.EnsureCreated();
-            return Ok();
-        }
-
-
-
     }
 }
