@@ -1,6 +1,10 @@
 ﻿
 using Countrys_API.Models;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using static System.Net.Mime.MediaTypeNames;
+
 
 namespace Countrys_API.Services
 {
@@ -16,6 +20,11 @@ namespace Countrys_API.Services
         public IEnumerable<Country> Get() 
         {
             return context.countries;
+        }
+
+        public IEnumerable<Country> GetCountryById(int id)
+        {
+           return context.countries.Where(c => c.Id == id); // myCountry = context.countries.Find(id); 
         }
 
         public async Task Save( [FromBody] Country country) 
@@ -60,6 +69,8 @@ namespace Countrys_API.Services
         IEnumerable<Country> Get();
 
         Task Save(Country country);
+
+        IEnumerable<Country> GetCountryById(int id);
 
         Task Update(int id, Country country);
 

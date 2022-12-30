@@ -1,7 +1,9 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using Countrys_API.Models;
 using Countrys_API.Services;
+
 
 namespace Countrys_API.Controllers
 {
@@ -23,9 +25,39 @@ namespace Countrys_API.Controllers
         {
             return Ok(countryService.Get());
         }
+        
+        [HttpGet("flag/{id}")]
+        public IActionResult GetFlagImage(int id) 
+        {
+            string filePath = Path.Combine(@"C:/Users/aaron/Desktop/Images/" + id + ".png");
+
+            if (System.IO.File.Exists(filePath))
+            {
+                return PhysicalFile(@"C:/Users/aaron/Desktop/Images/" + id + ".png", "image/png");
+            }
+            else
+            {
+                return NotFound(); // var country = countryService.GetFlagImage(id).ElementAt(0).Capital;
+            }   
+        }
+
+        [HttpGet("silhouette/{id}")]
+        public IActionResult GetSilHouette(int id)
+        {
+            string filePath = Path.Combine(@"C:/Users/aaron/Desktop/Images/" + id + ".png");
+
+            if (System.IO.File.Exists(filePath))
+            {
+                return PhysicalFile(@"C:/Users/aaron/Desktop/Images/" + id + ".png", "image/png");
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
         [HttpPost]
-        public IActionResult Post( [FromBody] Country country)
+        public IActionResult Post([FromBody] Country country)
         {
             countryService.Save(country);
             return Ok();
@@ -45,5 +77,9 @@ namespace Countrys_API.Controllers
             countryService.Delete(id);
             return Ok();
         }
+
+        
+
+
     }
 }
