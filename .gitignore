@@ -5,9 +5,10 @@
 
 
 # 
-*.Migrations
-*.Properties
 *.bin
+
+Migrations/*
+Properties/*
 Images/*
 
 # User-specific files
