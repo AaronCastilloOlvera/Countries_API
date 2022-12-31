@@ -29,11 +29,13 @@ namespace Countrys_API.Controllers
         [HttpGet("flag/{id}")]
         public IActionResult GetFlagImage(int id) 
         {
-            string filePath = Path.Combine(@"C:/Users/aaron/Desktop/Images/" + id + ".png");
+            string flagsPath = @"C:/Users/aaron/Desktop/Portafolio/Countrys-API/Images/Flags/";
+
+            string filePath = Path.Combine(flagsPath + id + ".png");
 
             if (System.IO.File.Exists(filePath))
             {
-                return PhysicalFile(@"C:/Users/aaron/Desktop/Images/" + id + ".png", "image/png");
+                return PhysicalFile(flagsPath + id + ".png", "image/png");
             }
             else
             {
@@ -44,6 +46,7 @@ namespace Countrys_API.Controllers
         [HttpGet("silhouette/{id}")]
         public IActionResult GetSilHouette(int id)
         {
+            /*
             string filePath = Path.Combine(@"C:/Users/aaron/Desktop/Images/" + id + ".png");
 
             if (System.IO.File.Exists(filePath))
@@ -54,6 +57,8 @@ namespace Countrys_API.Controllers
             {
                 return NotFound();
             }
+            */
+            return NotFound();
         }
 
         [HttpPost]

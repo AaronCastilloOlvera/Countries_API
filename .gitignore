@@ -8,6 +8,7 @@
 *.Migrations
 *.Properties
 *.bin
+*.Images
 
 # User-specific files
 *.rsuser
